@@ -5,12 +5,14 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour {
 
     private Vector2 _lastGroundPosition = new Vector2((float)-32.6452, (float)-1.369345);
-    private Vector2 _lastTrapezePosition;
+    private Vector2 _lastTrapezePosition = new Vector2(0, (float)7.19);
     private Vector2 _lastTrapPosition;
     private float groundSize = (float)19.20;
     public Martin martin;
     public int nbIteration = 0;
     public Transform _groundPrefab;
+    public Transform _trapezPrefab;
+    public int lastSpace = 0;
     // Use this for initialization
     void Start () {
 		
@@ -24,7 +26,13 @@ public class LevelGenerator : MonoBehaviour {
             nbIteration++;
             Random rnd = new Random();
             var newGround = Instantiate(_groundPrefab) as Transform;
-            _lastGroundPosition = newGround.position = new Vector3(_lastGroundPosition.x+ groundSize+ Random.Range(-5, 5), _lastGroundPosition.y+ Random.Range(-2,2));
+            lastSpace = Random.Range(-5, 10);
+            _lastGroundPosition = newGround.position = new Vector3(_lastGroundPosition.x+ groundSize+lastSpace, _lastGroundPosition.y+ Random.Range(0,0));
+            if (lastSpace > 5)
+            {
+                var newTrapez = Instantiate(_trapezPrefab) as Transform;
+                _lastTrapezePosition = newTrapez.position = new Vector3(_lastGroundPosition.x + groundSize + lastSpace/2, _lastTrapezePosition.y );
+            }
         }
     }
 }
