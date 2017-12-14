@@ -21,7 +21,7 @@ public class LevelGenerator : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        var newTrapez = Instantiate(_trapezPrefab) as Transform;
+        //var newTrapez = Instantiate(_trapezPrefab) as Transform;
         //_lastTrapezePosition = newTrapez.position = new Vector3(5, _lastTrapezePosition.y);
         //_lastTrapezeRotation = newTrapez.rotation = new Quaternion(0, 0, 0, 0);
 
