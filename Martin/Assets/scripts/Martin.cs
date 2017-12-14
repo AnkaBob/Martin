@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Martin : MonoBehaviour {
@@ -10,6 +11,9 @@ public class Martin : MonoBehaviour {
     private Rigidbody2D rigidBody;
     private FixedJoint2D joint;
     private GameObject lastTrapeze;
+
+    //private float jumpTimeStart = 0;
+    Stopwatch stopwatch = new Stopwatch();
 
     // Use this for initialization
     void Awake()
@@ -25,9 +29,15 @@ public class Martin : MonoBehaviour {
     {
         if (Input.GetButtonDown("Jump"))
         {
+            stopwatch.Start();
+        }
+        if (Input.GetButtonUp("Jump"))
+        {
             if (!_isJumping)
             {
-                Jump();
+                stopwatch.Stop();
+                Jump(stopwatch.ElapsedMilliseconds);
+                stopwatch.Reset();
             }
         }
     }
@@ -44,10 +54,14 @@ public class Martin : MonoBehaviour {
             0);
     }
 
-    void Jump()
+    void Jump(float time)
     {
+        time = System.Math.Min(400, time);
+        time = System.Math.Max(200, time);
+        float puissance = time / 400;
+        print(puissance);
         _isJumping = true;
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, 8f);
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, 10f* puissance);
 
         //GetComponent<Animator>().SetTrigger("Jump");
         //GetComponent<AudioSource>().Play();
@@ -90,7 +104,8 @@ public class Martin : MonoBehaviour {
     {
         lastTrapeze.GetComponent<Collider2D>().enabled = false;
         joint.connectedBody = null;
-        joint = null;
+        //joint = null;
+        lastTrapeze.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 10);
         //StartTheMovement();
     }
 
