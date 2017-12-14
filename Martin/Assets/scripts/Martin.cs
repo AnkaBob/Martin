@@ -56,6 +56,7 @@ public class Martin : MonoBehaviour {
         {
             Release();
             _isBalancing = false;
+            rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 
@@ -69,6 +70,7 @@ public class Martin : MonoBehaviour {
         rigidBody.velocity = new Vector2(0f, 0f);
         _isJumping = false;
         _isBalancing = true;
+        rigidBody.constraints = RigidbodyConstraints2D.None;
 
         if (joint == null)
         {
