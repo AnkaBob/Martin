@@ -5,6 +5,8 @@ Temp/
 Obj/
 UnityGenerated/
 Library/
+Martin/ProjectSettings/
+Martin/UnityPackageManager/
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
