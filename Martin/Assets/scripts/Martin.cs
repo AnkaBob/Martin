@@ -69,7 +69,6 @@ public class Martin : MonoBehaviour {
         rigidBody.velocity = new Vector2(0f, 0f);
         _isJumping = false;
         _isBalancing = true;
-
         if (joint == null)
         {
 
@@ -78,6 +77,7 @@ public class Martin : MonoBehaviour {
             joint.connectedBody = GetComponentInParent<Rigidbody2D>();
         }
 
+        catchedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 10);
         //GetComponent<Animator>().SetTrigger("Jump");
         //GetComponent<AudioSource>().Play();
     }
