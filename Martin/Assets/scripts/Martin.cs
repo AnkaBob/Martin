@@ -6,6 +6,7 @@ public class Martin : MonoBehaviour {
 
     private Vector2 _speed = new Vector2(5, 5);
     private Vector2 _direction;
+    private bool _isJumping;
     private Rigidbody2D rigidBody;
 
 
@@ -18,6 +19,7 @@ public class Martin : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        _isJumping = false;
         GetComponent<Rigidbody2D>().velocity = new Vector2(
             10,
             0);
@@ -31,7 +33,10 @@ public class Martin : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump"))
         {
-            Jump();
+            if (!_isJumping)
+            {
+                Jump();
+            }
         }
     }
 
@@ -43,6 +48,7 @@ public class Martin : MonoBehaviour {
 
     private void Jump()
     {
+        _isJumping = true;
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, 5f);
         //rigidBody.AddTorque(-10f, ForceMode2D.Impulse);
 
@@ -50,10 +56,19 @@ public class Martin : MonoBehaviour {
         GetComponent<AudioSource>().Play();
     }
 
+    public void EndJump()
+    {
+        _isJumping = false;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         /*if (collision.gameObject.tag.Equals("catchObject"))
         {
         }*/
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
+            EndJump();
+        }
     }
 }
