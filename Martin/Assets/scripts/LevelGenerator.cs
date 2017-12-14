@@ -13,6 +13,7 @@ public class LevelGenerator : MonoBehaviour {
     public Transform _groundPrefab;
     public Transform _trapezPrefab;
     public int lastSpace = 0;
+    public int _nbTrapezLeftForSerie = 0;
     // Use this for initialization
     void Start () {
 		
@@ -24,15 +25,35 @@ public class LevelGenerator : MonoBehaviour {
         //valeur arbitraire pour continuer a construire
         if (martin.transform.position.x > _lastGroundPosition.x - 1000) {
             nbIteration++;
+            int difficulty = nbIteration / 5;
+            int nbTrapez = 0;
+            if(difficulty >0 && _nbTrapezLeftForSerie == 0)
+            {
+                _nbTrapezLeftForSerie = difficulty + Random.Range(-1, 1);
+                nbTrapez = _nbTrapezLeftForSerie;
+
+            }
+
             Random rnd = new Random();
+            bool firstTrapeze = true;
+            while (_nbTrapezLeftForSerie > 0)
+            {
+                _nbTrapezLeftForSerie--;
+                var newTrapez = Instantiate(_trapezPrefab) as Transform;
+                if (firstTrapeze)
+                {
+                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastGroundPosition.x + groundSize/2 +8/2, _lastTrapezePosition.y);
+                    firstTrapeze = false;
+                }
+                else
+                {
+                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastTrapezePosition.x + 8, _lastTrapezePosition.y);
+                }
+            }
             var newGround = Instantiate(_groundPrefab) as Transform;
             lastSpace = Random.Range(-5, 10);
-            _lastGroundPosition = newGround.position = new Vector3(_lastGroundPosition.x+ groundSize+lastSpace, _lastGroundPosition.y+ Random.Range(0,0));
-            if (lastSpace > 5)
-            {
-                var newTrapez = Instantiate(_trapezPrefab) as Transform;
-                _lastTrapezePosition = newTrapez.position = new Vector3(_lastGroundPosition.x + groundSize + lastSpace/2, _lastTrapezePosition.y );
-            }
+            _lastGroundPosition = newGround.position = new Vector3(_lastGroundPosition.x+ groundSize+ nbTrapez*8+8, _lastGroundPosition.y+ Random.Range(0,0));
+
         }
     }
 }
