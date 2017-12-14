@@ -31,7 +31,8 @@ public class Martin : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump"))
         {
-            Jump();
+            if(Mathf.Approximately(rigidBody.velocity.y, 0f))
+                Jump();
         }
     }
 
