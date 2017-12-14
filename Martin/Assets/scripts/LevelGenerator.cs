@@ -7,8 +7,8 @@ public class LevelGenerator : MonoBehaviour {
     private Vector2 _lastGroundPosition = new Vector2((float)-32.6452, (float)-1.369345);
     private Vector2 _lastTrapezePosition = new Vector2(0, (float)10);
     private Vector2 _lastTrapezeScale = new Vector2(0, (float)10);
-    private Quaternion _lastTrapezeRotation = new Quaternion(0, 0, 90 , 0);
-    private Quaternion _baseTrapezeRotation = new Quaternion(0, 0, 90, 0);
+    private Quaternion _lastTrapezeRotation = new Quaternion(0, 0, 0 , 0);
+    private Quaternion _baseTrapezeRotation = new Quaternion(0, 0, 0, 0);
     private Vector2 _lastTrapPosition;
     private float groundSize = (float)19.20;
     public Martin martin;
@@ -22,7 +22,7 @@ public class LevelGenerator : MonoBehaviour {
     void Start ()
     {
         var newTrapez = Instantiate(_trapezPrefab) as Transform;
-        _lastTrapezePosition = newTrapez.position = new Vector3(5, _lastTrapezePosition.y);
+        //_lastTrapezePosition = newTrapez.position = new Vector3(5, _lastTrapezePosition.y);
         //_lastTrapezeRotation = newTrapez.rotation = new Quaternion(0, 0, 0, 0);
 
 
@@ -34,7 +34,7 @@ public class LevelGenerator : MonoBehaviour {
         //valeur arbitraire pour continuer a construire
         if (martin.transform.position.x > _lastGroundPosition.x - 1000) {
             nbIteration++;
-            int difficulty = nbIteration / 5;
+            int difficulty = nbIteration / 3;
             int nbTrapez = 0;
             if(difficulty >0 && _nbTrapezLeftForSerie == 0)
             {
@@ -52,13 +52,13 @@ public class LevelGenerator : MonoBehaviour {
                 if (firstTrapeze)
                 {
                     _lastTrapezePosition = newTrapez.position = new Vector3(_lastGroundPosition.x + groundSize/2 +8, _lastTrapezePosition.y);
-                    _lastTrapezeRotation = newTrapez.rotation = new Quaternion(0,0,90 + Random.Range(-20, 20),0);
+                    //_lastTrapezeRotation = newTrapez.rotation = new Quaternion(0,0,0,0);
                     firstTrapeze = false;
                 }
                 else
                 {
                     _lastTrapezePosition = newTrapez.position = new Vector3(_lastTrapezePosition.x + 8, _lastTrapezePosition.y);
-                    _lastTrapezeRotation = newTrapez.rotation = new Quaternion(0, 0, 90 + Random.Range(-20, 20), 0);
+                   // _lastTrapezeRotation = newTrapez.rotation = new Quaternion(0, 0, 0 , 0);
 
                 }
             }
