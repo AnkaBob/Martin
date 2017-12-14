@@ -16,6 +16,12 @@ public class Loader : MonoBehaviour {
     public float _trapezeSpeed = 10;
     public float _trapezeTopPosition = 10;
     public float _trapezeLength = 10;
+    public int _difficultyIncreaseSpeed=3;
+    public int _minAddTrapezeRandom=-1;
+    public int _maxAddTrapezeRandom=1;
+    public int _gapSize=8;
+    public int _minAddGroundHeightRandom=0;
+    public int _maxAddGroundHeightRandom=0;
 
 
     public static Loader getInstance()
@@ -59,6 +65,19 @@ public class Loader : MonoBehaviour {
             _trapezeTopPosition = float.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
         if (splittedLine[0].Equals("TrapezeLength"))
             _trapezeLength = float.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+
+        if (splittedLine[0].Equals("DifficultyIncreaseSpeed"))
+            _difficultyIncreaseSpeed = int.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("MinAddTrapezeRandom"))
+            _minAddTrapezeRandom = int.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("MaxAddTrapezeRandom"))
+            _maxAddTrapezeRandom = int.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("GapSize"))
+            _gapSize = int.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("MinAddGroundHeightRandom"))
+            _minAddGroundHeightRandom = int.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("MaxAddGroundHeightRandom"))
+            _maxAddGroundHeightRandom = int.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
 
 
 
