@@ -21,7 +21,7 @@ public class Martin : MonoBehaviour {
 
         _isJumping = false;
         GetComponent<Rigidbody2D>().velocity = new Vector2(
-            10,
+            Loader.getInstance()._martinSpeed,
             0);
     }
 	
@@ -42,8 +42,6 @@ public class Martin : MonoBehaviour {
 
     void FixedUpdate()
     {
-        //GetComponent<Rigidbody2D>().position = new Vector3(transform.position.x+1, transform.position.y);
-        //GetComponent<Rigidbody2D>().position.Set(GetComponent<Rigidbody2D>().position.x, GetComponent<Rigidbody2D>().position.y) ;
     }
 
     private void Jump()
@@ -63,9 +61,6 @@ public class Martin : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        /*if (collision.gameObject.tag.Equals("catchObject"))
-        {
-        }*/
         if (collision.gameObject.tag.Equals("Ground"))
         {
             EndJump();
