@@ -18,14 +18,9 @@ public class MartinsHead : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.LogError("collision ! ");
         if (collision.gameObject.tag.Equals("catchObject"))
         {
-            Debug.LogError("collision avec un trapeze ! ");
-            HingeJoint2D joint = collision.gameObject.AddComponent<HingeJoint2D>();
-            joint.connectedBody = GetComponentInParent<Rigidbody2D>();
-
-            martin.GetComponent<Martin>().Grab();
+            martin.GetComponent<Martin>().Grab(collision.gameObject);
         }
     }
 }

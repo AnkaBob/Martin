@@ -7,13 +7,17 @@ public class Martin : MonoBehaviour {
     private Vector2 _speed = new Vector2(5, 5);
     private Vector2 _direction;
     private bool _isJumping;
+    private bool _isBalancing;
     private Rigidbody2D rigidBody;
+
+    private HingeJoint2D _joint;
 
 
     // Use this for initialization
     void Awake()
     {
         _isJumping = false;
+        _isBalancing = false;
         rigidBody = GetComponent<Rigidbody2D>();
         GetComponent<Rigidbody2D>().velocity = new Vector2(
             Loader.getInstance()._martinSpeed,
@@ -23,8 +27,8 @@ public class Martin : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 5f;
-        transform.Translate(x, 0f, 0f, Space.World);
+        /*var x = Input.GetAxis("Horizontal") * Time.deltaTime * 5f;
+        transform.Translate(x, 0f, 0f, Space.World);*/
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -43,10 +47,15 @@ public class Martin : MonoBehaviour {
     {
         _isJumping = true;
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, 5f);
-        //rigidBody.AddTorque(-10f, ForceMode2D.Impulse);
 
         //GetComponent<Animator>().SetTrigger("Jump");
         //GetComponent<AudioSource>().Play();
+
+        if(_isBalancing)
+        {
+            Release();
+            _isBalancing = false;
+        }
     }
 
     public void EndJump()
@@ -54,14 +63,22 @@ public class Martin : MonoBehaviour {
         _isJumping = false;
     }
 
-    public void Grab()
+    public void Grab(GameObject catchedObject)
     {
-        Debug.LogError("Grab");
         rigidBody.velocity = new Vector2(0f, 0f);
         _isJumping = false;
+        _isBalancing = true;
+
+        _joint = catchedObject.AddComponent<HingeJoint2D>();
+        _joint.connectedBody = GetComponentInParent<Rigidbody2D>();
 
         //GetComponent<Animator>().SetTrigger("Jump");
         //GetComponent<AudioSource>().Play();
+    }
+
+    void Release()
+    {
+        _joint.connectedBody = null;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
