@@ -6,11 +6,8 @@ public class MartinsHead : MonoBehaviour {
 
     public Martin martin;
 
-    bool isCatching;
-
     // Use this for initialization
     void Start () {
-        isCatching = false;
     }
 	
 	// Update is called once per frame
@@ -20,18 +17,10 @@ public class MartinsHead : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isCatching && collision.gameObject.tag.Equals("catchObject"))
-        {
-            isCatching = true;
-            martin.GetComponent<Martin>().Grab(collision.gameObject);
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
         if (collision.gameObject.tag.Equals("catchObject"))
         {
-            isCatching = false;
+            martin.GetComponent<Martin>().Grab(collision.gameObject);
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 }
