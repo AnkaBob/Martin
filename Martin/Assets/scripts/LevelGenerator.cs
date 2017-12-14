@@ -6,6 +6,9 @@ public class LevelGenerator : MonoBehaviour {
 
     private Vector2 _lastGroundPosition = new Vector2((float)-32.6452, (float)-1.369345);
     private Vector2 _lastTrapezePosition = new Vector2(0, (float)7.19);
+    private Vector2 _lastTrapezeScale = new Vector2(0, (float)7.19);
+    private Quaternion _lastTrapezeRotation = new Quaternion(0, 0, 50 , 0);
+    private Quaternion _baseTrapezeRotation = new Quaternion(0, 0, 50, 0);
     private Vector2 _lastTrapPosition;
     private float groundSize = (float)19.20;
     public Martin martin;
@@ -14,6 +17,7 @@ public class LevelGenerator : MonoBehaviour {
     public Transform _trapezPrefab;
     public int lastSpace = 0;
     public int _nbTrapezLeftForSerie = 0;
+
     // Use this for initialization
     void Start () {
 		
@@ -42,17 +46,20 @@ public class LevelGenerator : MonoBehaviour {
                 var newTrapez = Instantiate(_trapezPrefab) as Transform;
                 if (firstTrapeze)
                 {
-                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastGroundPosition.x + groundSize/2 +8/2, _lastTrapezePosition.y);
+                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastGroundPosition.x + groundSize/2 +6, _lastTrapezePosition.y);
+                    _lastTrapezeRotation = newTrapez.rotation = new Quaternion(0,0,90 + Random.Range(-20, 20),0);
                     firstTrapeze = false;
                 }
                 else
                 {
-                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastTrapezePosition.x + 8, _lastTrapezePosition.y);
+                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastTrapezePosition.x + 6, _lastTrapezePosition.y);
+                    _lastTrapezeRotation = newTrapez.rotation = new Quaternion(0, 0, 90 + Random.Range(-20, 20), 0);
+
                 }
             }
             var newGround = Instantiate(_groundPrefab) as Transform;
             lastSpace = Random.Range(-5, 10);
-            _lastGroundPosition = newGround.position = new Vector3(_lastGroundPosition.x+ groundSize+ nbTrapez*8+8, _lastGroundPosition.y+ Random.Range(0,0));
+            _lastGroundPosition = newGround.position = new Vector3(_lastGroundPosition.x+ groundSize+ nbTrapez*6+6, _lastGroundPosition.y+ Random.Range(0,0));
 
         }
     }

@@ -93,6 +93,7 @@ public class Martin : MonoBehaviour {
         if (collision.gameObject.tag.Equals("Ground"))
         {
             EndJump();
+            StartTheMovement();
         }
     }
 }
