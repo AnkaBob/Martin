@@ -21,5 +21,7 @@ public class Martin : MonoBehaviour {
 
     void FixedUpdate()
     {
+        //GetComponent<Rigidbody2D>().position = new Vector3(transform.position.x+1, transform.position.y);
+        //GetComponent<Rigidbody2D>().position.Set(GetComponent<Rigidbody2D>().position.x, GetComponent<Rigidbody2D>().position.y) ;
     }
 }
