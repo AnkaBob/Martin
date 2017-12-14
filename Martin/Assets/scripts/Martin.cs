@@ -9,7 +9,7 @@ public class Martin : MonoBehaviour {
 
     private Rigidbody2D rigidBody;
     private FixedJoint2D joint;
-
+    private GameObject lastTrapeze;
 
     // Use this for initialization
     void Awake()
@@ -72,6 +72,8 @@ public class Martin : MonoBehaviour {
 
         if (joint == null)
         {
+
+            lastTrapeze = catchedObject;
             joint = catchedObject.AddComponent<FixedJoint2D>();
             joint.connectedBody = GetComponentInParent<Rigidbody2D>();
         }
@@ -82,10 +84,10 @@ public class Martin : MonoBehaviour {
 
     void Release()
     {
+        lastTrapeze.GetComponent<Collider2D>().enabled = false;
         joint.connectedBody = null;
         joint = null;
-        
-        StartTheMovement();
+        //StartTheMovement();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
