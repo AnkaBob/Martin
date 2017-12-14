@@ -16,10 +16,6 @@ public class GroundBehaviour : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Martin")
-        {
-            Martin martin = collider.gameObject.GetComponent<Martin>();
-            martin.EndJump();
-        }
+        
     }
 }
