@@ -1,1 +1,7 @@
 MartinSpeed=10
+JumpPuissanceMax = 10;
+JumpMinTime = 200;
+JumpMaxTime = 400;
+TrapezeSpeed = 10;
+TrapezeTopPosition = 10;
+TrapezeLength = 10;

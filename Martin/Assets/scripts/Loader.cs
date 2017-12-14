@@ -10,6 +10,13 @@ public class Loader : MonoBehaviour {
 
     private static Loader _instance;
     public float _martinSpeed = 10;
+    public float _jumpPuissanceMax = 10;
+    public float _jumpMinTime = 200;
+    public float _jumpMaxTime = 400;
+    public float _trapezeSpeed = 10;
+    public float _trapezeTopPosition = 10;
+    public float _trapezeLength = 10;
+
 
     public static Loader getInstance()
     {
@@ -40,10 +47,22 @@ public class Loader : MonoBehaviour {
 
         if (splittedLine[0].Equals("MartinSpeed"))
             _martinSpeed = float.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("JumpPuissanceMax"))
+            _jumpPuissanceMax = float.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("JumpMinTime"))
+            _jumpMinTime = float.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("JumpMaxTime"))
+            _jumpMaxTime = float.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("TrapezeSpeed"))
+            _trapezeSpeed = float.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("TrapezeTopPosition"))
+            _trapezeTopPosition = float.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("TrapezeLength"))
+            _trapezeLength = float.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
 
 
 
-        print ("fin");
+        print("fin");
 
 		//BuyableEventDataManager.EVENTS.Add (data._id, data);
 

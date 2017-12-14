@@ -12,6 +12,12 @@ public class Martin : MonoBehaviour {
     private FixedJoint2D joint;
     private GameObject lastTrapeze;
 
+    private float _martinSpeed = Loader.getInstance()._martinSpeed;
+    private float _jumpPuissanceMax = Loader.getInstance()._jumpPuissanceMax;
+    private float _jumpMinTime = Loader.getInstance()._jumpMinTime;
+    private float _jumpMaxTime = Loader.getInstance()._jumpMaxTime;
+    private float _trapezeSpeed = Loader.getInstance()._trapezeSpeed;
+
     //private float jumpTimeStart = 0;
     Stopwatch stopwatch = new Stopwatch();
 
@@ -50,18 +56,18 @@ public class Martin : MonoBehaviour {
     {
         transform.rotation = new Quaternion();
         rigidBody.velocity = new Vector2(
-            Loader.getInstance()._martinSpeed,
+            _martinSpeed,
             0);
     }
 
     void Jump(float time)
     {
-        time = System.Math.Min(400, time);
-        time = System.Math.Max(200, time);
-        float puissance = time / 400;
+        time = System.Math.Min(_jumpMaxTime, time);
+        time = System.Math.Max(_jumpMinTime, time);
+        float puissance = time / _jumpMaxTime;
         print(puissance);
         _isJumping = true;
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, 10f* puissance);
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, _jumpPuissanceMax * puissance);
 
         //GetComponent<Animator>().SetTrigger("Jump");
         //GetComponent<AudioSource>().Play();
@@ -95,7 +101,7 @@ public class Martin : MonoBehaviour {
             joint.connectedBody = GetComponentInParent<Rigidbody2D>();
         }
 
-        catchedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 10);
+        catchedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(_trapezeSpeed, _trapezeSpeed);
         //GetComponent<Animator>().SetTrigger("Jump");
         //GetComponent<AudioSource>().Play();
     }
@@ -105,7 +111,7 @@ public class Martin : MonoBehaviour {
         lastTrapeze.GetComponent<Collider2D>().enabled = false;
         joint.connectedBody = null;
         //joint = null;
-        lastTrapeze.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 10);
+        //lastTrapeze.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 10);
         //StartTheMovement();
     }
 
