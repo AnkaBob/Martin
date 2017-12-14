@@ -10,7 +10,7 @@ public class Martin : MonoBehaviour {
     private bool _isBalancing;
     private Rigidbody2D rigidBody;
 
-    private HingeJoint2D _joint;
+    private FixedJoint2D _joint;
 
 
     // Use this for initialization
@@ -69,7 +69,7 @@ public class Martin : MonoBehaviour {
         _isJumping = false;
         _isBalancing = true;
 
-        _joint = catchedObject.AddComponent<HingeJoint2D>();
+        _joint = catchedObject.AddComponent<FixedJoint2D>();
         _joint.connectedBody = GetComponentInParent<Rigidbody2D>();
 
         //GetComponent<Animator>().SetTrigger("Jump");
