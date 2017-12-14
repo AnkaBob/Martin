@@ -36,3 +36,7 @@ ehthumbs.db
 Thumbs.db
 Thumbs.db.meta
 Project/\.vs/Project/v15/Server/sqlite3/db\.lock
+
+*.lock
+
+Martin/\.vs/Martin/v15/Server/sqlite3/
