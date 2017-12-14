@@ -58,6 +58,7 @@ public class Martin : MonoBehaviour {
     {
         Debug.LogError("Grab");
         rigidBody.velocity = new Vector2(0f, 0f);
+        _isJumping = false;
 
         //GetComponent<Animator>().SetTrigger("Jump");
         //GetComponent<AudioSource>().Play();

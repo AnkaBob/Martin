@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MartinsHead : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public Martin martin;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -23,7 +25,7 @@ public class MartinsHead : MonoBehaviour {
             HingeJoint2D joint = collision.gameObject.AddComponent<HingeJoint2D>();
             joint.connectedBody = GetComponentInParent<Rigidbody2D>();
 
-            gameObject.GetComponent<Martin>().Grab();
+            martin.GetComponent<Martin>().Grab();
         }
     }
 }
