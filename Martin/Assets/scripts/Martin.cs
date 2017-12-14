@@ -56,6 +56,7 @@ public class Martin : MonoBehaviour {
         {
             Release();
             _isBalancing = false;
+            transform.eulerAngles = new Vector3(0, 0, 0);
             rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
