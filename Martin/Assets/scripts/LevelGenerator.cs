@@ -7,8 +7,8 @@ public class LevelGenerator : MonoBehaviour {
     
 
     private Vector2 _lastGroundPosition = new Vector2((float)-32.6452, (float)-1.369345);
-    private Vector2 _lastTrapezePosition = new Vector2(0, Loader.getInstance()._trapezeTopPosition);
-    private Vector2 _lastTrapezeScale = new Vector2(0, Loader.getInstance()._trapezeLength);
+    private Vector2 _lastTrapezePosition;
+    private Vector2 _lastTrapezeScale;
     private Quaternion _lastTrapezeRotation = new Quaternion(0, 0, 0 , 0);
     private Quaternion _baseTrapezeRotation = new Quaternion(0, 0, 0, 0);
     private Vector2 _lastTrapPosition;
@@ -23,6 +23,8 @@ public class LevelGenerator : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        _lastTrapezePosition = new Vector2(0, Loader.getInstance()._trapezeTopPosition);
+        _lastTrapezeScale = new Vector2(0, Loader.getInstance()._trapezeLength);
         //var newTrapez = Instantiate(_trapezPrefab) as Transform;
         //_lastTrapezePosition = newTrapez.position = new Vector3(5, _lastTrapezePosition.y);
         //_lastTrapezeRotation = newTrapez.rotation = new Quaternion(0, 0, 0, 0);

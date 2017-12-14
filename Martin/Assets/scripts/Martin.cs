@@ -12,15 +12,23 @@ public class Martin : MonoBehaviour {
     private FixedJoint2D joint;
     private GameObject lastTrapeze;
 
-    private float _martinSpeed = Loader.getInstance()._martinSpeed;
-    private float _jumpPuissanceMax = Loader.getInstance()._jumpPuissanceMax;
-    private float _jumpMinTime = Loader.getInstance()._jumpMinTime;
-    private float _jumpMaxTime = Loader.getInstance()._jumpMaxTime;
-    private float _trapezeSpeed = Loader.getInstance()._trapezeSpeed;
+    private float _martinSpeed;
+    private float _jumpPuissanceMax;
+    private float _jumpMinTime;
+    private float _jumpMaxTime;
+    private float _trapezeSpeed;
 
     //private float jumpTimeStart = 0;
     Stopwatch stopwatch = new Stopwatch();
 
+    private void Start()
+    {
+        _martinSpeed = Loader.getInstance()._martinSpeed;
+        _jumpPuissanceMax = Loader.getInstance()._jumpPuissanceMax;
+        _jumpMinTime = Loader.getInstance()._jumpMinTime;
+        _jumpMaxTime = Loader.getInstance()._jumpMaxTime;
+        _trapezeSpeed = Loader.getInstance()._trapezeSpeed;
+    }
     // Use this for initialization
     void Awake()
     {
