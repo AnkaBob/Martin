@@ -13,14 +13,9 @@ public class Martin : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
-    }
-
-    // Use this for initialization
-    void Start () {
-
         _isJumping = false;
-        GetComponent<Rigidbody2D>().velocity = new Vector2(
+        rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.velocity = new Vector2(
             10,
             0);
     }
@@ -52,13 +47,22 @@ public class Martin : MonoBehaviour {
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, 5f);
         //rigidBody.AddTorque(-10f, ForceMode2D.Impulse);
 
-        GetComponent<Animator>().SetTrigger("Jump");
-        GetComponent<AudioSource>().Play();
+        //GetComponent<Animator>().SetTrigger("Jump");
+        //GetComponent<AudioSource>().Play();
     }
 
     public void EndJump()
     {
         _isJumping = false;
+    }
+
+    public void Grab()
+    {
+        Debug.LogError("Grab");
+        rigidBody.velocity = new Vector2(0f, 0f);
+
+        //GetComponent<Animator>().SetTrigger("Jump");
+        //GetComponent<AudioSource>().Play();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
