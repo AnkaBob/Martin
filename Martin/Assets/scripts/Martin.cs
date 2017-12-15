@@ -98,9 +98,14 @@ public class Martin : MonoBehaviour {
             rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
             SoundEffectsHelper.Instance.MakeJump2Sound();
         }
+        else
+        {
+            GetComponent<Animator>().SetTrigger("Jump");
+        }
         
         if (!_canStartANewJump)
             return false;
+        GetComponent<Animator>().SetTrigger("Jump");
         //time = System.Math.Min(_jumpMaxTime, time);
         //time = System.Math.Max(_jumpMinTime, time);
         //float puissance = time / _jumpMaxTime;
@@ -113,9 +118,6 @@ public class Martin : MonoBehaviour {
         rigidBody.velocity = new Vector2(Mathf.Max(rigidBody.velocity.x,_martinSpeed), _jumpPuissanceMax * 1/3);
         SoundEffectsHelper.Instance.MakeJump1Sound();
         return true;
-
-        //GetComponent<Animator>().SetTrigger("Jump");
-        //GetComponent<AudioSource>().Play();
     }
     void JumpUpgrade(float time)
     {
@@ -157,6 +159,7 @@ public class Martin : MonoBehaviour {
 
     public void Grab(GameObject catchedObject)
     {
+        GetComponent<Animator>().SetTrigger("Grab");
         rigidBody.velocity = new Vector2(0f, 0f);
         _isJumping = false;
         _isBalancing = true;
@@ -182,6 +185,7 @@ lastTrapeze.transform.GetChild(0).transform.position.y - 0.75f);
 
     void Release()
     {
+        GetComponent<Animator>().SetTrigger("Ungrab");
         lastTrapeze.GetComponent<Collider2D>().enabled = false;
         joint.connectedBody = null;
         joint = null;
