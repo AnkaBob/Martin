@@ -66,7 +66,7 @@ public class Martin : MonoBehaviour {
         {
             JumpStop();
         }
-        if (transform.position.y<-2)
+        if (transform.position.y < -5)
         {
             SceneManager.LoadScene("EndScreen");
         }
@@ -166,8 +166,8 @@ public class Martin : MonoBehaviour {
         if (lastTrapeze == null)
         {
             lastTrapeze = catchedObject;
-            rigidBody.position = new Vector2(lastTrapeze.transform.GetChild(0).transform.position.x/* - 0.3f*/,
-                lastTrapeze.transform.GetChild(0).transform.position.y/* - 0.375f*/);
+            rigidBody.position = new Vector2(lastTrapeze.transform.GetChild(0).transform.position.x + 0.1f,
+                lastTrapeze.transform.GetChild(0).transform.position.y + 0.45f);
             //lastTrapeze.GetComponent<Collider2D>().enabled = false;
             joint = catchedObject.AddComponent<FixedJoint2D>();
             joint.connectedBody = mouth.GetComponentInParent<Rigidbody2D>();
