@@ -59,7 +59,7 @@ public class Martin : MonoBehaviour {
             JumpStart();
         }
         if (_isJumping)
-        {
+        {            
             JumpUpgrade(Time.time * 1000);
         }
         if (Input.GetButtonUp("Jump"))
