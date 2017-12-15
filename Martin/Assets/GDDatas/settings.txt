@@ -1,17 +1,17 @@
 MartinSpeed=8
-JumpPuissanceMax=8
+JumpPuissanceMax=10
 JumpMinTime=200
-JumpMaxTime=400
+JumpMaxTime=500
 TrapezeSpeed=11
-TrapezeTopPosition=10
+TrapezeTopPosition=9
 TrapezeLength=8
 
 //The lower is the harder (1 is the harder)
 DifficultyIncreaseSpeed=2
 
 MinAddTrapezeRandom=-1
-MaxAddTrapezeRandom=1
-GapSize=8
+MaxAddTrapezeRandom=0
+GapSize=7
 MinAddGroundHeightRandom=0
 MaxAddGroundHeightRandom=0
 
