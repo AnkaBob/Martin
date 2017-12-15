@@ -53,6 +53,18 @@ public class LevelGenerator : MonoBehaviour
         //var newTrapez = Instantiate(_trapezPrefab) as Transform;
         //_lastTrapezePosition = newTrapez.position = new Vector3(5, _lastTrapezePosition.y);
         //_lastTrapezeRotation = newTrapez.rotation = new Quaternion(0, 0, 0, 0);
+        //init
+        //Gestion du sol
+        int nbMidGroundInit = Random.Range(15, 20);
+        var debGroundInit = Instantiate(_groundDebPrefab) as Transform;
+        _lastGroundPosition = debGroundInit.position = new Vector3(_lastGroundPosition.x, _lastGroundPosition.y + Random.Range(_minAddGroundHeightRandom, _maxAddGroundHeightRandom));
+        for (int i = 0; i < nbMidGroundInit; i++)
+        {
+            var midGround = Instantiate(_groundMidPrefab) as Transform;
+            _lastGroundPosition = midGround.position = new Vector3(_lastGroundPosition.x + 1.4f, _lastGroundPosition.y + Random.Range(_minAddGroundHeightRandom, _maxAddGroundHeightRandom));
+        }
+        var endGroundInit = Instantiate(_groundEndPrefab) as Transform;
+        _lastGroundPosition = endGroundInit.position = new Vector3(_lastGroundPosition.x + 1.4f, _lastGroundPosition.y + Random.Range(_minAddGroundHeightRandom, _maxAddGroundHeightRandom));
 
 
     }
@@ -60,7 +72,7 @@ public class LevelGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //valeur arbitraire pour continuer a construire
+               //valeur arbitraire pour continuer a construire
         if (martin.transform.position.x > _lastGroundPosition.x - 1000)
         {
             nbIteration++;
