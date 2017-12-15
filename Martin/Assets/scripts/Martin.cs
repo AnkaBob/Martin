@@ -148,6 +148,9 @@ public class Martin : MonoBehaviour {
     public void ResetJump()
     {
         _canStartANewJump = true;
+        _isJumping = false;
+        startJumpTime = 0;
+        lastTimeRecordedJump = 0;
     }
 
     public void Grab(GameObject catchedObject)
@@ -169,6 +172,7 @@ public class Martin : MonoBehaviour {
         catchedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(_trapezeSpeed, _trapezeSpeed);
         //GetComponent<Animator>().SetTrigger("Jump");
         //GetComponent<AudioSource>().Play();
+        ResetJump();
     }
 
     void Release()
