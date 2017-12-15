@@ -102,7 +102,7 @@ public class Martin : MonoBehaviour {
         if (!_canStartANewJump)
             return false;
 
-        if (rigidBody.velocity.y < 1)
+        if (rigidBody.position.y < 1.3f)
             return false;
         GetComponent<Animator>().SetTrigger("Jump");
         
