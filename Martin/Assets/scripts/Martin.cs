@@ -97,6 +97,10 @@ public class Martin : MonoBehaviour {
             rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
             SoundEffectsHelper.Instance.MakeJump2Sound();
         }
+        else
+        {
+            SoundEffectsHelper.Instance.MakeJump1Sound();
+        }
         
         if (!_canStartANewJump)
             return false;
