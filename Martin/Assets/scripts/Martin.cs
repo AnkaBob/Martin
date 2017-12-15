@@ -103,7 +103,6 @@ public class Martin : MonoBehaviour {
 
         if (joint == null)
         {
-
             lastTrapeze = catchedObject;
             joint = catchedObject.AddComponent<FixedJoint2D>();
             joint.connectedBody = GetComponentInParent<Rigidbody2D>();
@@ -118,7 +117,7 @@ public class Martin : MonoBehaviour {
     {
         lastTrapeze.GetComponent<Collider2D>().enabled = false;
         joint.connectedBody = null;
-        //joint = null;
+        joint = null;
         //lastTrapeze.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 10);
         //StartTheMovement();
     }
