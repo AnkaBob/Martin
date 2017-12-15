@@ -7,8 +7,9 @@ public class EndGameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        float score = PlayerPrefs.GetFloat("Score");
+        print(score);
+    }
 	
 	// Update is called once per frame
 	void Update () {
