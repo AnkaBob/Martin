@@ -19,7 +19,7 @@ public class Martin : MonoBehaviour {
     private float _jumpMinTime;
     private float _jumpMaxTime;
     private float _trapezeSpeed;
-    private int scorenb=0;
+    private int scorenb;
 
     public Text Scoretext;
 
@@ -64,7 +64,7 @@ public class Martin : MonoBehaviour {
         {
             SceneManager.LoadScene("EndScreen");
         }
-        scorenb = Mathf.Max(((int)transform.position.x + 10) * 10, scorenb);
+        scorenb= ((int)transform.position.x + 10) * 10;
         PlayerPrefs.SetInt("Score", scorenb); //mise à jour du score
         Scoretext.text = "Score : " + scorenb;
     }
