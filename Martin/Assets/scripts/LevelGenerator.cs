@@ -55,7 +55,7 @@ public class LevelGenerator : MonoBehaviour
         //_lastTrapezeRotation = newTrapez.rotation = new Quaternion(0, 0, 0, 0);
         //init
         //Gestion du sol
-        int nbMidGroundInit = Random.Range(15, 20);
+        int nbMidGroundInit = Random.Range(25, 30);
         var debGroundInit = Instantiate(_groundDebPrefab) as Transform;
         _lastGroundPosition = debGroundInit.position = new Vector3(_lastGroundPosition.x, _lastGroundPosition.y + Random.Range(_minAddGroundHeightRandom, _maxAddGroundHeightRandom));
         for (int i = 0; i < nbMidGroundInit; i++)
