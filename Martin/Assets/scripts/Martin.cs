@@ -26,7 +26,7 @@ public class Martin : MonoBehaviour {
 
     //private float jumpTimeStart = 0;
     //Stopwatch stopwatch = new Stopwatch();
-    public Mouth mouth;
+    public MartinsHead head;
 
     float lastTimeRecordedJump;
     float startJumpTime;
@@ -171,9 +171,8 @@ public class Martin : MonoBehaviour {
                 lastTrapeze.transform.GetChild(0).transform.position.y + 0.45f);
             //lastTrapeze.GetComponent<Collider2D>().enabled = false;
             joint = catchedObject.AddComponent<FixedJoint2D>();
-            joint.connectedBody = mouth.GetComponentInParent<Rigidbody2D>();
+            joint.connectedBody = head.GetComponentInParent<Rigidbody2D>();
             SoundEffectsHelper.Instance.MakeGrabSound();
-            //mouth.GetComponent<Transform>().position = lastTrapeze.GetComponentInParent<Rigidbody2D>().position;
         }
 
         catchedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(_trapezeSpeed, _trapezeSpeed);
