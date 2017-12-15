@@ -1,8 +1,16 @@
+<<<<<<< HEAD
+MartinSpeed=8
+JumpPuissanceMax=14
+JumpMinTime=0
+JumpMaxTime=300
+TrapezeSpeed=10
+=======
 MartinSpeed=9
 JumpPuissanceMax=14
 JumpMinTime=0
 JumpMaxTime=300
 TrapezeSpeed=11
+>>>>>>> 989e803a07aac62185710fd0737bc6904267bc27
 TrapezeTopPosition=10
 TrapezeLength=8
 
