@@ -4,7 +4,7 @@ JumpMinTime=200
 JumpMaxTime=400
 TrapezeSpeed=10
 TrapezeTopPosition=10
-TrapezeLength=10
+TrapezeLength=13
 
 //The lower is the harder (1 is the harder)
 DifficultyIncreaseSpeed=2

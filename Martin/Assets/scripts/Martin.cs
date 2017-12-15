@@ -21,6 +21,7 @@ public class Martin : MonoBehaviour {
 
     //private float jumpTimeStart = 0;
     Stopwatch stopwatch = new Stopwatch();
+    public Mouth mouth;
 
     private void Start()
     {
@@ -56,7 +57,7 @@ public class Martin : MonoBehaviour {
             }
         }
 
-        if (transform.position.y<0)
+        if (transform.position.y<-2)
         {
             PlayerPrefs.SetFloat("Score", (transform.position.x+10)*1000);
             SceneManager.LoadScene("EndScreen");
@@ -112,7 +113,8 @@ public class Martin : MonoBehaviour {
         {
             lastTrapeze = catchedObject;
             joint = catchedObject.AddComponent<FixedJoint2D>();
-            joint.connectedBody = GetComponentInParent<Rigidbody2D>();
+            joint.connectedBody = mouth.GetComponentInParent<Rigidbody2D>();
+            //mouth.GetComponent<Transform>().position = lastTrapeze.GetComponentInParent<Rigidbody2D>().position;
         }
 
         catchedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(_trapezeSpeed, _trapezeSpeed);
@@ -129,12 +131,9 @@ public class Martin : MonoBehaviour {
         //StartTheMovement();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    public void HitTheGround()
     {
-        if (collision.gameObject.tag.Equals("Ground"))
-        {
-            EndJump();
-            StartTheMovement();
-        }
+        EndJump();
+        StartTheMovement();
     }
 }
