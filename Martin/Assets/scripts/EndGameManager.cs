@@ -10,6 +10,7 @@ public class EndGameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         score.text = "Score : " + PlayerPrefs.GetInt("Score");
+        SoundEffectsHelper.Instance.MakeDeathSound();
     }
 	
 	// Update is called once per frame

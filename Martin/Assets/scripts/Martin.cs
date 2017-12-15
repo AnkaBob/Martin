@@ -95,6 +95,7 @@ public class Martin : MonoBehaviour {
             _isBalancing = false;
             transform.eulerAngles = new Vector3(0, 0, 0);
             rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+            SoundEffectsHelper.Instance.MakeJump2Sound();
         }
         
         if (!_canStartANewJump)
@@ -157,6 +158,7 @@ public class Martin : MonoBehaviour {
             lastTrapeze = catchedObject;
             joint = catchedObject.AddComponent<FixedJoint2D>();
             joint.connectedBody = mouth.GetComponentInParent<Rigidbody2D>();
+            SoundEffectsHelper.Instance.MakeGrabSound();
             //mouth.GetComponent<Transform>().position = lastTrapeze.GetComponentInParent<Rigidbody2D>().position;
         }
 
