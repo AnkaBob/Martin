@@ -73,7 +73,7 @@ public class Martin : MonoBehaviour {
         
         scorenb = Mathf.Max(((int)transform.position.x + 10) * 10, scorenb);
         PlayerPrefs.SetInt("Score", scorenb); //mise à jour du score
-        Scoretext.text = "Score : " + scorenb;
+        Scoretext.text = scorenb.ToString();
     }
 
     void FixedUpdate()
