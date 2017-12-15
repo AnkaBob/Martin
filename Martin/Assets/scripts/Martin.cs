@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Martin : MonoBehaviour {
-    
+
     private bool _isJumping;
+    private bool _canStartANewJump;
     private bool _isBalancing;
 
     private Rigidbody2D rigidBody;
@@ -24,8 +25,12 @@ public class Martin : MonoBehaviour {
     public Text Scoretext;
 
     //private float jumpTimeStart = 0;
-    Stopwatch stopwatch = new Stopwatch();
+    //Stopwatch stopwatch = new Stopwatch();
     public Mouth mouth;
+
+    float lastTimeRecordedJump;
+    float startJumpTime;
+
 
     private void Start()
     {
@@ -40,6 +45,7 @@ public class Martin : MonoBehaviour {
     {
         _isJumping = false;
         _isBalancing = false;
+        _canStartANewJump = true;
         rigidBody = GetComponent<Rigidbody2D>();
         StartTheMovement();
     }
@@ -47,18 +53,18 @@ public class Martin : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        print("Update");
         if (Input.GetButtonDown("Jump"))
         {
-            stopwatch.Start();
+            JumpStart();
+        }
+        if (_isJumping)
+        {
+            JumpUpgrade(Time.time * 1000);
         }
         if (Input.GetButtonUp("Jump"))
         {
-            if (!_isJumping)
-            {
-                stopwatch.Stop();
-                Jump(stopwatch.ElapsedMilliseconds);
-                stopwatch.Reset();
-            }
+            JumpStop();
         }
         if (transform.position.y<-2)
         {
@@ -81,30 +87,62 @@ public class Martin : MonoBehaviour {
             0);
     }
 
-    void Jump(float time)
+    bool JumpStart()
     {
-        time = System.Math.Min(_jumpMaxTime, time);
-        time = System.Math.Max(_jumpMinTime, time);
-        float puissance = time / _jumpMaxTime;
-        print(puissance);
-        _isJumping = true;
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, _jumpPuissanceMax * puissance);
-
-        //GetComponent<Animator>().SetTrigger("Jump");
-        //GetComponent<AudioSource>().Play();
-
-        if(_isBalancing)
+        if (_isBalancing)
         {
             Release();
             _isBalancing = false;
             transform.eulerAngles = new Vector3(0, 0, 0);
             rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
+        
+        if (!_canStartANewJump)
+            return false;
+        //time = System.Math.Min(_jumpMaxTime, time);
+        //time = System.Math.Max(_jumpMinTime, time);
+        //float puissance = time / _jumpMaxTime;
+        //print(puissance);
+        _isJumping = true;
+        _canStartANewJump = false;
+        lastTimeRecordedJump = Time.time * 1000;
+        startJumpTime = Time.time * 1000;
+        //rigidBody.velocity = new Vector2(rigidBody.velocity.x, _jumpPuissanceMax );
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, _jumpPuissanceMax * (_jumpMinTime / _jumpMaxTime));
+        return true;
+
+        //GetComponent<Animator>().SetTrigger("Jump");
+        //GetComponent<AudioSource>().Play();
+    }
+    void JumpUpgrade(float time)
+    {
+        print("JumpUpgrade");
+        if ((time-startJumpTime) >= _jumpMaxTime)
+            return;
+        
+        float delay = System.Math.Min(_jumpMaxTime, time - lastTimeRecordedJump);
+        print("JumpUpgrade : " + delay);
+        lastTimeRecordedJump = time;
+
+         float puissance = delay / _jumpMaxTime;
+        print("JumpUpgrade : " + puissance);
+
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y+_jumpPuissanceMax * puissance);
+
+        //GetComponent<Animator>().SetTrigger("Jump");
+        //GetComponent<AudioSource>().Play();
     }
 
-    public void EndJump()
+    public void JumpStop()
     {
         _isJumping = false;
+        startJumpTime = 0;
+        lastTimeRecordedJump = 0;
+    }
+
+    public void ResetJump()
+    {
+        _canStartANewJump = true;
     }
 
     public void Grab(GameObject catchedObject)
@@ -138,7 +176,7 @@ public class Martin : MonoBehaviour {
 
     public void HitTheGround()
     {
-        EndJump();
+        ResetJump();
         StartTheMovement();
     }
 }

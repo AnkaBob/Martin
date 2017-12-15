@@ -39,7 +39,7 @@ public class Loader : MonoBehaviour {
         Load();
     }
 	public void Load(){
-		print ("load");
+		//print ("load");
 		List<string> fileLines;
 		string filePath = System.IO.Path.Combine (Application.dataPath, "GDDatas/settings.txt");
 		var sr = File.OpenText(filePath);
@@ -51,7 +51,7 @@ public class Loader : MonoBehaviour {
 	}
 
 	public void ExtractData(string rawData){
-		print (rawData);
+		//print (rawData);
 		string[] splittedLine = rawData.Split ('=');
 
         if (splittedLine[0].Equals("MartinSpeed"))
@@ -89,7 +89,7 @@ public class Loader : MonoBehaviour {
 
 
 
-        print("fin");
+        //print("fin");
 
 		//BuyableEventDataManager.EVENTS.Add (data._id, data);
 
