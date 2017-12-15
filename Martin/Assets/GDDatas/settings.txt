@@ -14,3 +14,6 @@ MaxAddTrapezeRandom=1
 GapSize=8
 MinAddGroundHeightRandom=0
 MaxAddGroundHeightRandom=0
+
+MinAddGapSizeRandom=-3
+MaxAddGapSizeRandom=0

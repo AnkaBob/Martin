@@ -20,8 +20,11 @@ public class Loader : MonoBehaviour {
     public int _minAddTrapezeRandom=-1;
     public int _maxAddTrapezeRandom=1;
     public int _gapSize=8;
-    public int _minAddGroundHeightRandom=0;
-    public int _maxAddGroundHeightRandom=0;
+    public int _minAddGroundHeightRandom = 0;
+    public int _maxAddGroundHeightRandom = 0;
+    public int _minAddGapSizeRandom = -3;
+    public int _maxAddGapSizeRandom = 0;
+    
 
 
     public static Loader getInstance()
@@ -78,6 +81,11 @@ public class Loader : MonoBehaviour {
             _minAddGroundHeightRandom = int.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
         if (splittedLine[0].Equals("MaxAddGroundHeightRandom"))
             _maxAddGroundHeightRandom = int.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+
+        if (splittedLine[0].Equals("MinAddGapSizeRandom"))
+            _minAddGapSizeRandom = int.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        if (splittedLine[0].Equals("MaxAddGapSizeRandom"))
+            _maxAddGapSizeRandom = int.Parse(splittedLine[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
 
 
 

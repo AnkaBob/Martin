@@ -29,6 +29,9 @@ public class LevelGenerator : MonoBehaviour {
     public int _minAddGapSizeRandom;
     public int _maxAddGapSizeRandom;
 
+    public int _minAddGroundHeightRandom;
+    public int _maxAddGroundHeightRandom;
+
     // Use this for initialization
     void Start ()
     {
@@ -39,8 +42,10 @@ public class LevelGenerator : MonoBehaviour {
         _minAddTrapezeRandom =  Loader.getInstance()._minAddTrapezeRandom;
         _maxAddTrapezeRandom = Loader.getInstance()._maxAddTrapezeRandom;
         _gapSize = Loader.getInstance()._gapSize;
-        _minAddGapSizeRandom = Loader.getInstance()._minAddGroundHeightRandom;
-        _maxAddGapSizeRandom = Loader.getInstance()._maxAddGroundHeightRandom;
+        _minAddGroundHeightRandom = Loader.getInstance()._minAddGroundHeightRandom;
+        _maxAddGroundHeightRandom = Loader.getInstance()._maxAddGroundHeightRandom;
+        _minAddGapSizeRandom = Loader.getInstance()._minAddGapSizeRandom;
+        _maxAddGapSizeRandom = Loader.getInstance()._maxAddGapSizeRandom;
         //var newTrapez = Instantiate(_trapezPrefab) as Transform;
         //_lastTrapezePosition = newTrapez.position = new Vector3(5, _lastTrapezePosition.y);
         //_lastTrapezeRotation = newTrapez.rotation = new Quaternion(0, 0, 0, 0);
@@ -79,7 +84,7 @@ public class LevelGenerator : MonoBehaviour {
             }
             var newGround = Instantiate(_groundPrefab) as Transform;
            // lastSpace = Random.Range(-5, 10);
-            _lastGroundPosition = newGround.position = new Vector3(_lastGroundPosition.x+ groundSize+ (nbTrapeze+1)* _gapSize, _lastGroundPosition.y+ Random.Range(_minAddGapSizeRandom, _maxAddGapSizeRandom));
+            _lastGroundPosition = newGround.position = new Vector3(_lastGroundPosition.x+ groundSize+ (nbTrapeze+1)* _gapSize+Random.Range(_minAddGapSizeRandom, _maxAddGapSizeRandom), _lastGroundPosition.y+ Random.Range(_minAddGroundHeightRandom, _maxAddGroundHeightRandom));
 
         }
     }
