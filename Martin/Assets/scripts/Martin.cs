@@ -105,13 +105,15 @@ public class Martin : MonoBehaviour {
             rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
             SoundEffectsHelper.Instance.MakeJump2Sound();
         }
-
+        else
+        {
+            GetComponent<Animator>().SetTrigger("Jump");
+        }
         if (!_canStartANewJump)
             return false;
 
         if (rigidBody.position.y < 1.3f)
             return false;
-        GetComponent<Animator>().SetTrigger("Jump");
         
         //time = System.Math.Min(_jumpMaxTime, time);
         //time = System.Math.Max(_jumpMinTime, time);
