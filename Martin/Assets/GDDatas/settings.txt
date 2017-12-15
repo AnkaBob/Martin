@@ -1,5 +1,5 @@
-MartinSpeed=10
-JumpPuissanceMax=10
+MartinSpeed=8
+JumpPuissanceMax=8
 JumpMinTime=200
 JumpMaxTime=400
 TrapezeSpeed=10
