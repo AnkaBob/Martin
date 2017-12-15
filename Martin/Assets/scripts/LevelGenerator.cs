@@ -84,8 +84,9 @@ public class LevelGenerator : MonoBehaviour {
                 }
                 else
                 {
-                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastTrapezePosition.x + _gapSize*1.5f+ (1-nextValueForScale)*2, 8.5f-(1- nextValueForScale)*2);
-                    totalDistance += _gapSize * 1.5f + (1 - nextValueForScale) * 2;
+                    float randomValue = Random.Range(1f, 1.4f);
+                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastTrapezePosition.x + _gapSize*1.5f* randomValue + (1-nextValueForScale)*2, 8.5f-(1- nextValueForScale)*2);
+                    totalDistance += _gapSize * 1.5f* randomValue + (1 - nextValueForScale) * 2;
                 }
                 _lastTrapezeScale = newTrapez.transform.localScale = new Vector3(nextValueForScale, _lastTrapezeScale.y, 0);
                 nextValueForScale = 2 - nextValueForScale;
