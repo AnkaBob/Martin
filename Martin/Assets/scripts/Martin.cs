@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Martin : MonoBehaviour {
     
@@ -18,6 +19,9 @@ public class Martin : MonoBehaviour {
     private float _jumpMinTime;
     private float _jumpMaxTime;
     private float _trapezeSpeed;
+    private int scorenb;
+
+    public Text Scoretext;
 
     //private float jumpTimeStart = 0;
     Stopwatch stopwatch = new Stopwatch();
@@ -56,12 +60,13 @@ public class Martin : MonoBehaviour {
                 stopwatch.Reset();
             }
         }
-
         if (transform.position.y<-2)
         {
-            PlayerPrefs.SetFloat("Score", (transform.position.x+10)*1000);
             SceneManager.LoadScene("EndScreen");
         }
+        scorenb= ((int)transform.position.x + 10) * 10;
+        PlayerPrefs.SetInt("Score", scorenb); //mise à jour du score
+        Scoretext.text = "Score : " + scorenb;
     }
 
     void FixedUpdate()
