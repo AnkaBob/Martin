@@ -168,8 +168,8 @@ public class Martin : MonoBehaviour {
         if (lastTrapeze == null)
         {
             lastTrapeze = catchedObject;
-            rigidBody.position = new Vector2(lastTrapeze.transform.GetChild(0).transform.position.x-0.6f,
-lastTrapeze.transform.GetChild(0).transform.position.y - 0.75f);
+            rigidBody.position = new Vector2(lastTrapeze.transform.GetChild(0).transform.position.x/* - 0.3f*/,
+                lastTrapeze.transform.GetChild(0).transform.position.y/* - 0.375f*/);
             //lastTrapeze.GetComponent<Collider2D>().enabled = false;
             joint = catchedObject.AddComponent<FixedJoint2D>();
             joint.connectedBody = mouth.GetComponentInParent<Rigidbody2D>();
@@ -178,8 +178,6 @@ lastTrapeze.transform.GetChild(0).transform.position.y - 0.75f);
         }
 
         catchedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(_trapezeSpeed, _trapezeSpeed);
-        //GetComponent<Animator>().SetTrigger("Jump");
-        //GetComponent<AudioSource>().Play();
         ResetJump();
     }
 
