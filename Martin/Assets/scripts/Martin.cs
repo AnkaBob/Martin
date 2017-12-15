@@ -23,10 +23,11 @@ public class Martin : MonoBehaviour {
     private int scorenb=0;
 
     public Text Scoretext;
+    public GameObject BlackScreen;
 
     //private float jumpTimeStart = 0;
     //Stopwatch stopwatch = new Stopwatch();
-    public Mouth mouth;
+    public MartinsHead head;
 
     float lastTimeRecordedJump;
     float startJumpTime;
@@ -67,12 +68,19 @@ public class Martin : MonoBehaviour {
         }
         if (transform.position.y < -5)
         {
-            SceneManager.LoadScene("EndScreen");
+            StartCoroutine(EndScreen());
         }
         
         scorenb = Mathf.Max(((int)transform.position.x + 10) * 10, scorenb);
         PlayerPrefs.SetInt("Score", scorenb); //mise à jour du score
         Scoretext.text = scorenb.ToString();
+    }
+
+    private IEnumerator EndScreen()
+    {
+        BlackScreen.GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(0.8f);
+        SceneManager.LoadScene("EndScreen");
     }
 
     void FixedUpdate()
@@ -167,12 +175,11 @@ public class Martin : MonoBehaviour {
         {
             lastTrapeze = catchedObject;
             rigidBody.position = new Vector2(lastTrapeze.transform.GetChild(0).transform.position.x + 0.1f,
-                lastTrapeze.transform.GetChild(0).transform.position.y + 0.45f);
+                lastTrapeze.transform.GetChild(0).transform.position.y + 1.2f);
             //lastTrapeze.GetComponent<Collider2D>().enabled = false;
             joint = catchedObject.AddComponent<FixedJoint2D>();
-            joint.connectedBody = mouth.GetComponentInParent<Rigidbody2D>();
+            joint.connectedBody = head.GetComponentInParent<Rigidbody2D>();
             SoundEffectsHelper.Instance.MakeGrabSound();
-            //mouth.GetComponent<Transform>().position = lastTrapeze.GetComponentInParent<Rigidbody2D>().position;
         }
 
         catchedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(_trapezeSpeed, _trapezeSpeed);
