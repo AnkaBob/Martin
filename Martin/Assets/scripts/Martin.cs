@@ -121,6 +121,9 @@ public class Martin : MonoBehaviour {
     }
     void JumpUpgrade(float time)
     {
+        if (time - startJumpTime < _jumpMinTime)
+            return;
+        time = time - _jumpMinTime;
         print("JumpUpgrade");
         if ((time-startJumpTime) >= _jumpMaxTime)
             return;
@@ -130,6 +133,7 @@ public class Martin : MonoBehaviour {
         lastTimeRecordedJump = time;
 
          float puissance = delay / _jumpMaxTime;
+        puissance=puissance * 0.5f;
         print("JumpUpgrade : " + puissance);
 
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y+_jumpPuissanceMax * puissance);
