@@ -9,11 +9,11 @@ using System.Linq;
 public class Loader : MonoBehaviour {
 
     private static Loader _instance;
-    public float _martinSpeed = 9;
-    public float _jumpPuissanceMax = 14;
+    public float _martinSpeed = 8;
+    public float _jumpPuissanceMax = 13;
     public float _jumpMinTime = 0;
     public float _jumpMaxTime = 300;
-    public float _trapezeSpeed = 11;
+    public float _trapezeSpeed = 10;
     public float _trapezeTopPosition = 10;
     public float _trapezeLength = 8;
     public int _difficultyIncreaseSpeed=3;
