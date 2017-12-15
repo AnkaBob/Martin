@@ -115,7 +115,7 @@ lastTrapeze.transform.GetChild(0).transform.position.y + mouth.GetComponent<Circ
         lastTimeRecordedJump = Time.time * 1000;
         startJumpTime = Time.time * 1000;
         //rigidBody.velocity = new Vector2(rigidBody.velocity.x, _jumpPuissanceMax );
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, _jumpPuissanceMax * 1/3);
+        rigidBody.velocity = new Vector2(Mathf.Max(rigidBody.velocity.x,_martinSpeed), _jumpPuissanceMax * 1/3);
         SoundEffectsHelper.Instance.MakeJump1Sound();
         return true;
 
