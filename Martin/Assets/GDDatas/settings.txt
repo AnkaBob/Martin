@@ -1,8 +1,8 @@
 MartinSpeed=8
-JumpPuissanceMax=10
-JumpMinTime=200
-JumpMaxTime=500
-TrapezeSpeed=11
+JumpPuissanceMax=9
+JumpMinTime=0
+JumpMaxTime=300
+TrapezeSpeed=10
 TrapezeTopPosition=9
 TrapezeLength=8
 

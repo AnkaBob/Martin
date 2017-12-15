@@ -97,10 +97,6 @@ public class Martin : MonoBehaviour {
             rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
             SoundEffectsHelper.Instance.MakeJump2Sound();
         }
-        else
-        {
-            SoundEffectsHelper.Instance.MakeJump1Sound();
-        }
         
         if (!_canStartANewJump)
             return false;
@@ -113,7 +109,8 @@ public class Martin : MonoBehaviour {
         lastTimeRecordedJump = Time.time * 1000;
         startJumpTime = Time.time * 1000;
         //rigidBody.velocity = new Vector2(rigidBody.velocity.x, _jumpPuissanceMax );
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, _jumpPuissanceMax * (_jumpMinTime / _jumpMaxTime));
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, _jumpPuissanceMax * 1/3);
+        SoundEffectsHelper.Instance.MakeJump1Sound();
         return true;
 
         //GetComponent<Animator>().SetTrigger("Jump");
@@ -133,10 +130,10 @@ public class Martin : MonoBehaviour {
         lastTimeRecordedJump = time;
 
          float puissance = delay / _jumpMaxTime;
-        puissance=puissance * 0.5f;
+        //puissance=puissance * 0.5f;
         print("JumpUpgrade : " + puissance);
 
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y+_jumpPuissanceMax * puissance);
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y+_jumpPuissanceMax * (puissance*2/3));
 
         //GetComponent<Animator>().SetTrigger("Jump");
         //GetComponent<AudioSource>().Play();
