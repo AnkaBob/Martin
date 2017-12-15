@@ -70,6 +70,12 @@ public class Martin : MonoBehaviour {
         {
             SceneManager.LoadScene("EndScreen");
         }
+        if (lastTrapeze != null)
+        {
+            rigidBody.position = new Vector2(lastTrapeze.transform.GetChild(0).transform.position.x + mouth.GetComponent<CircleCollider2D>().offset.x,
+lastTrapeze.transform.GetChild(0).transform.position.y + mouth.GetComponent<CircleCollider2D>().offset.y);
+        }
+
         scorenb = Mathf.Max(((int)transform.position.x + 10) * 10, scorenb);
         PlayerPrefs.SetInt("Score", scorenb); //mise à jour du score
         Scoretext.text = "Score : " + scorenb;
@@ -161,11 +167,11 @@ public class Martin : MonoBehaviour {
         _isBalancing = true;
         rigidBody.constraints = RigidbodyConstraints2D.None;
 
-        if (joint == null)
+        if (lastTrapeze == null)
         {
             lastTrapeze = catchedObject;
-            joint = catchedObject.AddComponent<FixedJoint2D>();
-            joint.connectedBody = mouth.GetComponentInParent<Rigidbody2D>();
+            //joint = catchedObject.AddComponent<FixedJoint2D>();
+            //joint.connectedBody = mouth.GetComponentInParent<Rigidbody2D>();
             SoundEffectsHelper.Instance.MakeGrabSound();
             //mouth.GetComponent<Transform>().position = lastTrapeze.GetComponentInParent<Rigidbody2D>().position;
         }
@@ -179,8 +185,9 @@ public class Martin : MonoBehaviour {
     void Release()
     {
         lastTrapeze.GetComponent<Collider2D>().enabled = false;
-        joint.connectedBody = null;
-        joint = null;
+        //joint.connectedBody = null;
+        //joint = null;
+        lastTrapeze = null;
         //lastTrapeze.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 10);
         //StartTheMovement();
     }
