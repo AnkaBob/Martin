@@ -17,11 +17,12 @@ public class InfiniteStar : MonoBehaviour
     private float cameraInitialY;
     private float cameraOffsetY;
 
-    private Vector3 previousCameraPos = Camera.main.transform.position;
+    private Vector3 previousCameraPos;
 
     // Use this for initialization
     void Start()
     {
+        previousCameraPos = Camera.main.transform.position;
         cameraInitialY = Camera.main.transform.position.y;
         cameraOffsetY = background1.transform.position.y - cameraInitialY;
     }
