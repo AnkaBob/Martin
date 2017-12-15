@@ -36,7 +36,7 @@ public class LevelGenerator : MonoBehaviour {
     void Start ()
     {
         _lastTrapezePosition = new Vector2(0, Loader.getInstance()._trapezeTopPosition);
-        _lastTrapezeScale = new Vector2(0, Loader.getInstance()._trapezeLength);
+        _lastTrapezeScale = new Vector2(1, 0.4f);
 
         _difficultyIncreaseSpeed = Loader.getInstance()._difficultyIncreaseSpeed;
         _minAddTrapezeRandom =  Loader.getInstance()._minAddTrapezeRandom;
@@ -68,24 +68,32 @@ public class LevelGenerator : MonoBehaviour {
 
             }
             bool firstTrapeze = true;
+            float nextValueForScale = Random.Range(0.7f,1.3f);
+            float totalDistance = 0;
+            if (_nbTrapezeLeftForSerie < 1)
+                totalDistance = 3;
             while (_nbTrapezeLeftForSerie > 0)
             {
                 _nbTrapezeLeftForSerie--;
                 var newTrapez = Instantiate(_trapezPrefab) as Transform;
                 if (firstTrapeze)
                 {
-                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastGroundPosition.x + groundSize/2 +8, _lastTrapezePosition.y);
+                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastGroundPosition.x + groundSize/2 +8, 8.5f - (1 - nextValueForScale) * 2);
+                    totalDistance += groundSize / 2 + 8;
                     firstTrapeze = false;
                 }
                 else
                 {
-                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastTrapezePosition.x + _gapSize, _lastTrapezePosition.y);
+                    _lastTrapezePosition = newTrapez.position = new Vector3(_lastTrapezePosition.x + _gapSize*1.5f+ (1-nextValueForScale)*2, 8.5f-(1- nextValueForScale)*2);
+                    totalDistance += _gapSize * 1.5f + (1 - nextValueForScale) * 2;
                 }
+                _lastTrapezeScale = newTrapez.transform.localScale = new Vector3(nextValueForScale, _lastTrapezeScale.y, 0);
+                nextValueForScale = 2 - nextValueForScale;
+
             }
             var newGround = Instantiate(_groundPrefab) as Transform;
            // lastSpace = Random.Range(-5, 10);
-            _lastGroundPosition = newGround.position = new Vector3(_lastGroundPosition.x+ groundSize+ (nbTrapeze+1)* _gapSize+Random.Range(_minAddGapSizeRandom, _maxAddGapSizeRandom), _lastGroundPosition.y+ Random.Range(_minAddGroundHeightRandom, _maxAddGroundHeightRandom));
-
+            _lastGroundPosition = newGround.position = new Vector3(_lastGroundPosition.x+ groundSize* Random.Range(1f, 1.3f) + totalDistance + Random.Range(_minAddGapSizeRandom, _maxAddGapSizeRandom), _lastGroundPosition.y+ Random.Range(_minAddGroundHeightRandom, _maxAddGroundHeightRandom));
         }
     }
 }

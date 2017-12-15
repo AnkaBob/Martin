@@ -16,7 +16,7 @@ public class Loader : MonoBehaviour {
     public float _trapezeSpeed = 11;
     public float _trapezeTopPosition = 10;
     public float _trapezeLength = 8;
-    public int _difficultyIncreaseSpeed=2;
+    public int _difficultyIncreaseSpeed=3;
     public int _minAddTrapezeRandom=-1;
     public int _maxAddTrapezeRandom=0;
     public int _gapSize=7;

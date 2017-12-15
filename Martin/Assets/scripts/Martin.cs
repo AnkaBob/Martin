@@ -100,12 +100,12 @@ public class Martin : MonoBehaviour {
         }
         else
         {
-            GetComponent<Animator>().SetTrigger("Jump");
+           // GetComponent<Animator>().SetTrigger("Jump");
         }
         
         if (!_canStartANewJump)
             return false;
-        GetComponent<Animator>().SetTrigger("Jump");
+       // GetComponent<Animator>().SetTrigger("Jump");
         //time = System.Math.Min(_jumpMaxTime, time);
         //time = System.Math.Max(_jumpMinTime, time);
         //float puissance = time / _jumpMaxTime;
@@ -159,7 +159,7 @@ public class Martin : MonoBehaviour {
 
     public void Grab(GameObject catchedObject)
     {
-        GetComponent<Animator>().SetTrigger("Grab");
+       // GetComponent<Animator>().SetTrigger("Grab");
         rigidBody.velocity = new Vector2(0f, 0f);
         _isJumping = false;
         _isBalancing = true;
@@ -185,7 +185,7 @@ lastTrapeze.transform.GetChild(0).transform.position.y - 0.75f);
 
     void Release()
     {
-        GetComponent<Animator>().SetTrigger("Ungrab");
+       // GetComponent<Animator>().SetTrigger("Ungrab");
         lastTrapeze.GetComponent<Collider2D>().enabled = false;
         joint.connectedBody = null;
         joint = null;
