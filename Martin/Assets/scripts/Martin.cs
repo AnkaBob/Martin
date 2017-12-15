@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Martin : MonoBehaviour {
     
@@ -53,6 +54,11 @@ public class Martin : MonoBehaviour {
                 Jump(stopwatch.ElapsedMilliseconds);
                 stopwatch.Reset();
             }
+        }
+
+        if (transform.position.y<0)
+        {
+            SceneManager.LoadScene("EndScreen");
         }
     }
 
