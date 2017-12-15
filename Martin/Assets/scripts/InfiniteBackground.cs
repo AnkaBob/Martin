@@ -17,6 +17,8 @@ public class InfiniteBackground : MonoBehaviour
     private float cameraInitialY;
     private float cameraOffsetY;
 
+    private Vector3 previousCameraPos= Camera.main.transform.position;
+
     // Use this for initialization
     void Start()
     {
@@ -67,5 +69,12 @@ public class InfiniteBackground : MonoBehaviour
         var positionBackground2 = background2.transform.position;
         positionBackground2.y = background1.transform.position.y;
         background2.transform.position = positionBackground2;
-    }
+
+
+        //Parallax
+        Vector3 CameraMovement = previousCameraPos - Camera.main.transform.position;
+        background2.transform.position -= CameraMovement / 2;
+        background1.transform.position -= CameraMovement / 2;
+        previousCameraPos = Camera.main.transform.position;
+}
 }
