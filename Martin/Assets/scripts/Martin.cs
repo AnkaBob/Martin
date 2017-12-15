@@ -45,7 +45,7 @@ public class Martin : MonoBehaviour {
     {
         _isJumping = false;
         _isBalancing = false;
-        _canStartANewJump = true;
+        _canStartANewJump = false;
         rigidBody = GetComponent<Rigidbody2D>();
         StartTheMovement();
     }
@@ -70,7 +70,7 @@ public class Martin : MonoBehaviour {
         {
             SceneManager.LoadScene("EndScreen");
         }
-
+        
         scorenb = Mathf.Max(((int)transform.position.x + 10) * 10, scorenb);
         PlayerPrefs.SetInt("Score", scorenb); //mise à jour du score
         Scoretext.text = scorenb.ToString();
