@@ -175,7 +175,7 @@ public class Martin : MonoBehaviour {
         {
             lastTrapeze = catchedObject;
             rigidBody.position = new Vector2(lastTrapeze.transform.GetChild(0).transform.position.x + 0.1f,
-                lastTrapeze.transform.GetChild(0).transform.position.y + 1.2f);
+                lastTrapeze.transform.GetChild(0).transform.position.y + 1.3f);
             //lastTrapeze.GetComponent<Collider2D>().enabled = false;
             joint = catchedObject.AddComponent<FixedJoint2D>();
             joint.connectedBody = head.GetComponentInParent<Rigidbody2D>();
