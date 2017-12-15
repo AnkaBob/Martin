@@ -23,6 +23,7 @@ public class Martin : MonoBehaviour {
     private int scorenb=0;
 
     public Text Scoretext;
+    public GameObject BlackScreen;
 
     //private float jumpTimeStart = 0;
     //Stopwatch stopwatch = new Stopwatch();
@@ -68,12 +69,19 @@ public class Martin : MonoBehaviour {
         }
         if (transform.position.y < -5)
         {
-            SceneManager.LoadScene("EndScreen");
+            StartCoroutine(EndScreen());
         }
         
         scorenb = Mathf.Max(((int)transform.position.x + 10) * 10, scorenb);
         PlayerPrefs.SetInt("Score", scorenb); //mise à jour du score
         Scoretext.text = scorenb.ToString();
+    }
+
+    private IEnumerator EndScreen()
+    {
+        BlackScreen.GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(0.8f);
+        SceneManager.LoadScene("EndScreen");
     }
 
     void FixedUpdate()
