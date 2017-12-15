@@ -9,7 +9,7 @@ public class EndGameManager : MonoBehaviour {
     public Text score;
 	// Use this for initialization
 	void Start () {
-        score.text = "Score : " + PlayerPrefs.GetInt("Score");
+        score.text = PlayerPrefs.GetInt("Score").ToString();
         SoundEffectsHelper.Instance.MakeDeathSound();
     }
 	
