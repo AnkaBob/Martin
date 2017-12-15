@@ -36,7 +36,7 @@ public class LevelGenerator : MonoBehaviour {
     void Start ()
     {
         _lastTrapezePosition = new Vector2(0, Loader.getInstance()._trapezeTopPosition);
-        _lastTrapezeScale = new Vector2(1, 0.4f);
+        _lastTrapezeScale = new Vector2(1, 0.7f);
 
         _difficultyIncreaseSpeed = Loader.getInstance()._difficultyIncreaseSpeed;
         _minAddTrapezeRandom =  Loader.getInstance()._minAddTrapezeRandom;
