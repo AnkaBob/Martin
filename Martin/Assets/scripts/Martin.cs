@@ -53,8 +53,7 @@ public class Martin : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        print("Update");
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             JumpStart();
         }
@@ -62,7 +61,7 @@ public class Martin : MonoBehaviour {
         {            
             JumpUpgrade(Time.time * 1000);
         }
-        if (Input.GetButtonUp("Jump"))
+        if (Input.GetButtonUp("Jump") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended))
         {
             JumpStop();
         }

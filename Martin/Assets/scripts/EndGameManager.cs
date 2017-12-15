@@ -15,7 +15,7 @@ public class EndGameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-         if (Input.GetButtonDown("Jump"))
+         if (Input.GetButtonDown("Jump") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             SceneManager.LoadScene("Main");
         }
